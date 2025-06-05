@@ -10,7 +10,7 @@ dotenv.config();
 const ai = new GoogleGenAI({ apiKey: "AIzaSyBuqGZhR9ATigN_wCEx43HFaV77QtXrv8Q" });
 
 // Connect MongoDB
-await mongoose.connect(process.env.MONGO_URI, {
+await mongoose.connect("mongodb+srv://vaibhavgoswami303:cjogBpzdg3XbRiGz@cluster0.qxuz2qj.mongodb.net/db_zomato?retryWrites=true&w=majority&appName=Cluster0", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -22,7 +22,7 @@ const Scrap = mongoose.model("scrap_data_main", zomatoSchema, "scrap_data_main")
 
 // Fetch Cloudinary image
 async function fetchImageBase64(publicId) {
-  const url = `https://res.cloudinary.com/${process.env.CLOUD_NAME}/image/upload/zomato/${publicId}.jpg`;
+  const url = `https://res.cloudinary.com/dgicfvwuw/image/upload/zomato/${publicId}.jpg`;
   const res = await axios.get(url, { responseType: "arraybuffer" });
   return Buffer.from(res.data).toString("base64");
 }
